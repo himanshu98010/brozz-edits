@@ -14,8 +14,9 @@ import {
   Volume2,
   X,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type PointerEvent } from "react";
 import { SiteEffects } from "@/components/site-effects";
+import { ContactForm } from "@/components/contact-form";
 
 const projects = [
   {
@@ -170,6 +171,11 @@ function Grain() {
 export function Studio() {
   const [loaded, setLoaded] = useState(false);
   const reduced = useReducedMotion();
+  const movePlayhead = (event: PointerEvent<HTMLDivElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const position = Math.min(100, Math.max(0, ((event.clientX - bounds.left) / bounds.width) * 100));
+    event.currentTarget.style.setProperty("--playhead-position", `${position}%`);
+  };
   return (
     <main id="top">
       <SiteEffects />
@@ -299,7 +305,7 @@ export function Studio() {
             eye, and a story that earns every second.
           </p>
         </div>
-        <div className="timeline">
+        <div className="timeline" onPointerMove={movePlayhead}>
           <div className="timeline-head">
             <span>SEQUENCE_01</span>
             <span>00:00:00:00</span>
@@ -370,7 +376,12 @@ export function Studio() {
         </div>
       </section>
       <section id="contact" className="contact">
-        <div className="contact-orb" />
+        <div className="contact-solar" aria-hidden="true">
+          <div className="contact-solar-orbit contact-solar-orbit-one" />
+          <div className="contact-solar-orbit contact-solar-orbit-two" />
+          <div className="contact-solar-core" />
+          <div className="contact-solar-satellite" />
+        </div>
         <p className="eyebrow">Your next chapter starts here</p>
         <h2>
           LET&apos;S MAKE
@@ -380,6 +391,7 @@ export function Studio() {
           <em>UNSKIPPABLE.</em>
         </h2>
         <Button light>Schedule a meeting</Button>
+        <ContactForm />
         <div className="contact-footer">
           <a href="mailto:hello@brozzedits.com">
             <Mail /> hello@brozzedits.com
