@@ -393,8 +393,8 @@ export function Studio() {
         <Button light>Schedule a meeting</Button>
         <ContactForm />
         <div className="contact-footer">
-          <a href="mailto:hello@brozzedits.com">
-            <Mail /> hello@brozzedits.com
+          <a href="mailto:vaibhavsaxena1818@gmail.com">
+            <Mail /> vaibhavsaxena1818@gmail.com
           </a>
           <a href="https://www.instagram.com/brozz__edits/" target="_blank">
             <Instagram /> @brozz__edits
