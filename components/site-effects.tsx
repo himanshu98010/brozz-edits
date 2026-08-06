@@ -13,7 +13,7 @@ export function SiteEffects() {
     const cursor = cursorRef.current;
     if (!cursor) return;
     let frame = 0, x = innerWidth / 2, y = innerHeight / 2, targetX = x, targetY = y;
-    const render = () => { x += (targetX - x) * .14; y += (targetY - y) * .14; cursor.style.transform = `translate3d(${x}px,${y}px,0)`; frame = requestAnimationFrame(render); };
+    const render = () => { x += (targetX - x) * .28; y += (targetY - y) * .28; cursor.style.transform = `translate3d(${x}px,${y}px,0)`; frame = requestAnimationFrame(render); };
     const move = (event: PointerEvent) => { targetX = event.clientX; targetY = event.clientY; cursor.classList.add("is-visible"); cursor.classList.toggle("is-active", Boolean((event.target as HTMLElement).closest("a,button,input,textarea,[role='button']"))); };
     const down = () => cursor.classList.add("is-pressed");
     const up = () => cursor.classList.remove("is-pressed");

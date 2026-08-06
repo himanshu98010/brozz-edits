@@ -1,11 +1,9 @@
 "use client";
-import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDownRight,
   ArrowUpRight,
   ChevronRight,
-  CirclePlay,
   Instagram,
   Mail,
   Menu,
@@ -17,27 +15,8 @@ import {
 import { useEffect, useState, type PointerEvent } from "react";
 import { SiteEffects } from "@/components/site-effects";
 import { ContactForm } from "@/components/contact-form";
+import { ReelShowcase } from "@/components/reel-showcase";
 
-const projects = [
-  {
-    name: "The Open Road",
-    type: "Commercial / 01",
-    image:
-      "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1600&q=85",
-  },
-  {
-    name: "Built to Last",
-    type: "Real estate / 02",
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85",
-  },
-  {
-    name: "Human Signal",
-    type: "Podcast / 03",
-    image:
-      "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=1600&q=85",
-  },
-];
 const services = [
   "Video Editing",
   "Motion Graphics",
@@ -149,13 +128,15 @@ function Header() {
 function Button({
   children,
   light = false,
+  href,
 }: {
   children: React.ReactNode;
   light?: boolean;
+  href?: string;
 }) {
   return (
     <a
-      href={light ? "https://calendly.com/brozzedits/intro" : "#contact"}
+      href={href ?? (light ? "https://calendly.com/brozzedits/intro" : "#contact")}
       target={light ? "_blank" : undefined}
       rel={light ? "noreferrer" : undefined}
       className={`button ${light ? "light" : ""}`}
@@ -213,7 +194,7 @@ export function Studio() {
               <br />
               the reason people stop scrolling.
             </p>
-            <Button>See our work</Button>
+            <Button href="#work">See our work</Button>
           </motion.div>
         </div>
         <div className="orb-wrap" aria-hidden="true">
@@ -234,45 +215,7 @@ export function Studio() {
           SCROLL TO PLAY <ArrowDownRight size={15} />
         </div>
       </section>
-      <section id="work" className="work section">
-        <div className="section-head">
-          <p className="eyebrow">Selected work / 2024—25</p>
-          <h2>
-            Stories with
-            <br />
-            <em>staying power.</em>
-          </h2>
-          <p className="smallcopy">
-            Every project is a deliberate cut toward a feeling, a thought, an
-            action.
-          </p>
-        </div>
-        <div className="projects">
-          {projects.map((p, i) => (
-            <article className="project" key={p.name}>
-              <div className="project-image">
-                <Image
-                  src={p.image}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 70vw"
-                  alt={p.name}
-                />
-                <div className="project-play">
-                  <CirclePlay size={38} />
-                </div>
-              </div>
-              <div className="project-meta">
-                <span>{p.type}</span>
-                <h3>{p.name}</h3>
-                <ArrowUpRight />
-              </div>
-            </article>
-          ))}
-        </div>
-        <a className="text-link" href="#contact">
-          View all work <ArrowUpRight size={17} />
-        </a>
-      </section>
+      <ReelShowcase kind="creative" />
       <section id="services" className="services section">
         <div className="services-intro">
           <p className="eyebrow">Capabilities</p>
@@ -375,6 +318,7 @@ export function Studio() {
           </div>
         </div>
       </section>
+      <ReelShowcase kind="testimonials" />
       <section id="contact" className="contact">
         <div className="contact-solar" aria-hidden="true">
           <div className="contact-solar-orbit contact-solar-orbit-one" />
