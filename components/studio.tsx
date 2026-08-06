@@ -3,19 +3,16 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDownRight,
   ArrowUpRight,
-  ChevronRight,
   Instagram,
   Mail,
   Menu,
-  Pause,
-  Play,
-  Volume2,
   X,
 } from "lucide-react";
 import { useEffect, useState, type PointerEvent } from "react";
 import { SiteEffects } from "@/components/site-effects";
 import { ContactForm } from "@/components/contact-form";
 import { ReelShowcase } from "@/components/reel-showcase";
+import { FounderStory } from "@/components/founder-story";
 
 const services = [
   "Video Editing",
@@ -299,25 +296,7 @@ export function Studio() {
           <Button>Meet the studio</Button>
         </div>
       </section>
-      <section className="quote">
-        <p className="eyebrow">Words from collaborators</p>
-        <blockquote>
-          “They found the story in footage we&apos;d watched a hundred times.
-          The final cut felt inevitable.”
-        </blockquote>
-        <div>
-          <span>ARJUN MEHRA</span>
-          <span>Founder, Northline</span>
-          <div className="quote-controls">
-            <button aria-label="Previous testimonial">
-              <ChevronRight />
-            </button>
-            <button aria-label="Play testimonial">
-              <Play size={15} />
-            </button>
-          </div>
-        </div>
-      </section>
+      <FounderStory />
       <ReelShowcase kind="testimonials" />
       <section id="contact" className="contact">
         <div className="contact-solar" aria-hidden="true">

@@ -37,7 +37,7 @@ function ReelCard({ reel }: { reel: Reel }) {
 export function ReelShowcase({ kind }: { kind: "creative" | "testimonials" }) {
   const reels = kind === "creative" ? creativeReels : testimonials;
   return <section id={kind === "creative" ? "work" : "testimonials"} className={`reels ${kind === "testimonials" ? "reel-testimonials" : ""}`}>
-    <div className="reels-heading"><p className="eyebrow">{kind === "creative" ? "The edit suite / selected reels" : "Unfiltered feedback / video testimonials"}</p><h2>{kind === "creative" ? <>Built for<br/><em>the replay.</em></> : <>Real words.<br/><em>Real results.</em></>}</h2></div>
+    <div className="reels-heading"><p className="eyebrow">{kind === "creative" ? "The edit suite / selected reels" : "Words from collaborators"}</p><h2>{kind === "creative" ? <>Built for<br/><em>the replay.</em></> : <>Real words.<br/><em>Real results.</em></>}</h2></div>
     <div className="reel-rail">{reels.map((reel) => <ReelCard key={reel.src} reel={reel} />)}</div>
   </section>;
 }
